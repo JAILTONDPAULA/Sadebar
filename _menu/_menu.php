@@ -27,4 +27,8 @@
         <li>OBJETO 2</li>
         <li>OBJETO 3</li>
     </div>
+    <p class="collapsed" data-toggle="collapse" data-target="#menu3">SAIR</p>
+    <div id="menu3" class="collapse" data-parent="#menuLateral">
+        <li>SAIR SISTEMA</li>
+    </div>
 </div>
