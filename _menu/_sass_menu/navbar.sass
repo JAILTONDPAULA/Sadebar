@@ -93,15 +93,38 @@ body
     section
         padding: 1rem
         color: #fff
+        text-align: center
         h5
             font-size: 0.8rem
             text-align: center                
         img
-            margin: 1rem 30%
+            margin: 1rem
             border-radius: 50%
-#menu+div
-    animation-name: enconder
-#menu:checked+div
-    animation-name: mostrar
+@media(max-width:768px)
+    #menuLateral
+        width: 40%
+    section
+        img
+            width: 30% !important
+    @keyframes mostrar     
+        100%
+            left: 60%
+    @keyframes enconder
+        0%
+            left: 60%
+        100%
+            left: 100%   
+@media(max-width:548px)
+    #menuLateral
+        width: 80%
+    @keyframes mostrar     
+        100%
+            left: 20%
+    @keyframes enconder
+        0%
+            left: 20%
+        100%
+            left: 100%   
+
 
 
