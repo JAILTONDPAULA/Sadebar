@@ -1,0 +1,127 @@
+@import color
+@mixin margin
+    padding: 0
+    margin: 0
+    box-sizing: border-box
+@mixin invisivel
+    visibility: hidden
+    opacity: 0
+    // z-index: 5
+body
+    @include margin
+    font-family: Helvetica
+li
+    list-style: none
+nav.primaryMenu
+    @include margin
+    position: fixed
+    top: 0
+    height: 100vh
+    width: 20%
+    background: $color-2
+    color: #FFF
+    &~*
+        float: right
+        width: 80%
+    a
+        color: #FFF
+        text-decoration: none
+    >li
+        @include margin
+        list-style: none
+        position: relative
+        >a
+            display: flex
+            justify-content: space-between
+            align-items: center
+            flex-wrap: wrap
+            font-size: .8rem
+            font-weight: 600
+            border-bottom: 1px solid $color-3
+            padding: .5rem
+            >span
+                &:nth-child(1)
+                    flex-basis: 10%
+                    text-align: center
+                    font-size: 1.3rem
+                    box-sizing: border-box
+                &:nth-child(2)
+                    box-sizing: border-box
+                    flex-basis: 85%
+        >.submenu
+            @include margin
+            display: none
+            background: #1B1B2F
+            min-height: auto
+            max-height: auto
+            height: auto
+            li
+                padding: .4rem 1rem
+                box-sizing: border-box
+                &:hover
+                    background: $color-1
+                    border-right: 4px solid $color-4
+        >.submenu.active
+            display: block
+//* MENU MINIMIZADO *//
+nav.primaryMenu.active
+    width: 2.6rem
+    &~*
+        width: calc(100% - 2.6rem)
+    >li
+        >a
+            >span:nth-child(2)
+                position: absolute
+                left: 120%
+                padding: .5rem
+                border-radius: .2rem
+                background: #FFF
+                transform: translateX(-2rem)
+                box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px
+                color: #000
+                @include invisivel
+                &::before
+                    content: ''
+                    left: -.25rem
+                    top: .75rem
+                    width: .5rem
+                    height: .5rem
+                    background: #FFF
+                    position: absolute
+                    transform: rotate(45deg)
+        &:hover:not(.active)
+            >a
+                >span:nth-child(2)
+                    transform: translateX(0)
+                    opacity: 1
+                    visibility: visible
+                    transition: .3s
+        .submenu
+            transform: scale(.1)
+            display: block!important
+            @include invisivel
+            position: absolute
+            top: 0
+            left: 110%
+        &.active
+            .submenu
+                transform: scale(1)
+                opacity: 1
+                visibility: visible
+                trasition: transform .5s
+                &>li:hover
+                    background: $color-4
+                    border: none
+                &>li:nth-child(1):hover::before
+                    background: $color-4
+                &>li:nth-child(1)::before
+                    content: ''
+                    left: -.25rem
+                    top: .75rem
+                    width: .5rem
+                    height: .5rem
+                    background: #1b1b2f
+                    position: absolute
+                    transform: rotate(45deg)
+                    z-index: 0
+
