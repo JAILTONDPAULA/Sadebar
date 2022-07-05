@@ -30,6 +30,7 @@ nav.primaryMenu
         @include margin
         list-style: none
         position: relative
+        user-select: none
         >a
             display: flex
             justify-content: space-between
@@ -61,8 +62,24 @@ nav.primaryMenu
                 &:hover
                     background: $color-1
                     border-right: 4px solid $color-4
+        .info
+            padding: .5rem
+            p
+                font-size: .7rem
+                margin: 0
+                span
+                    float: right
+                    width: 80%
         >.submenu.active
             display: block
+    footer
+        padding: 1rem
+        text-align: center
+        p
+            font-size: .6rem
+            user-select: none
+        span
+            display: none
 //* MENU MINIMIZADO *//
 nav.primaryMenu.active
     width: 2.6rem
@@ -97,18 +114,26 @@ nav.primaryMenu.active
                     visibility: visible
                     transition: .3s
         .submenu
-            transform: scale(.1)
             display: block!important
             @include invisivel
             position: absolute
             top: 0
-            left: 110%
+            left: 115%
         &.active
             .submenu
-                transform: scale(1)
                 opacity: 1
                 visibility: visible
-                trasition: transform .5s
+                trasition: .5s
+                box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px
+                border-radius: .2rem
+                >li
+                    white-space: nowrap
+                    &:nth-child(1)
+                        border-top-right-radius: .2rem
+                        border-top-left-radius: .2rem
+                    &:nth-last-child(1)
+                        border-bottom-right-radius: .2rem
+                        border-bottom-left-radius: .2rem
                 &>li:hover
                     background: $color-4
                     border: none
@@ -120,8 +145,54 @@ nav.primaryMenu.active
                     top: .75rem
                     width: .5rem
                     height: .5rem
+                    border-radius: .1rem
                     background: #1b1b2f
                     position: absolute
                     transform: rotate(45deg)
                     z-index: 0
-
+            .info
+                p
+                    white-space: nowrap
+                &::before
+                    content: ''
+                    left: -.25rem
+                    top: .75rem
+                    width: .5rem
+                    height: .5rem
+                    background: #1b1b2f
+                    position: absolute
+                    transform: rotate(45deg)
+                    z-index: 0
+    footer
+        p
+            display: none
+        span
+            display: block
+            user-select: none
+        &:hover
+            p
+                display: block
+                position: absolute
+                left: 120%
+                padding: .5rem
+                border-radius: .2rem
+                background: #FFF
+                transform: translateX(-2rem)
+                box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px
+                color: #000
+@media(max-width: 548px)
+    nav.primaryMenu
+        width: 60%
+        &~*
+            float: none
+            width: 40%
+    nav.primaryMenu.active
+        width: 2.6rem
+        &~*
+            float: right
+            width: calc(100% - 2.6rem)  
+        >li.active
+            .info
+                p
+                    span
+                        float: none
